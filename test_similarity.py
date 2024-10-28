@@ -33,7 +33,7 @@ epsilon = (-1) * 0.00001
 LOOP_IMPROVED = 0
 SET_LAST_10 = [] 
 BEST = []
-number_of_cities = int(os.getenv('NUMBER_OF_CITIES', '30')) 
+number_of_cities = int(os.getenv('NUMBER_OF_CITIES', '10')) 
 delta = 0.3
 alpha = [0.5, 0.3, 0.1]
 data_set = str(os.getenv('DATA_SET', 'C101_0.5.dat'))
@@ -330,6 +330,7 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
                 i = 0
             else:
                 i += 1
+        #     print("----------------",i,"-------------------")
         # print("-------",T,"--------")
         # print(best_fitness)
         # print(T, best_sol, "\n", best_fitness)
