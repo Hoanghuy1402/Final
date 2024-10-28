@@ -451,7 +451,7 @@ for txt_file in txt_files:
         for i in range(ITE):
             BEST = []
             print("------------------------",i,"------------------------")
-            start_time = time.time()
+            starttime = time.time()
             best_fitness, best_sol = Tabu_search_for_CVRP(1)
             print("---------- RESULT ----------")
             print(best_sol)
@@ -459,8 +459,8 @@ for txt_file in txt_files:
             avg += best_fitness/ITE
             result.append(best_fitness)
             # print(Function.Check_if_feasible(best_sol))
-            end_time = time.time()
-            run = end_time - start_time
+            endtime = time.time()
+            run = endtime - starttime
             run_time.append(run)
             avg_run_time += run/ITE
             sheet.cell(row=row, column=column, value=best_fitness)
