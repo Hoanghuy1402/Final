@@ -33,14 +33,14 @@ epsilon = (-1) * 0.00001
 LOOP_IMPROVED = 0
 SET_LAST_10 = [] 
 BEST = []
-number_of_cities = int(os.getenv('NUMBER_OF_CITIES', '10')) 
+number_of_cities = int(os.getenv('NUMBER_OF_CITIES')) 
 delta = 0.3
 alpha = [0.5, 0.3, 0.1]
-data_set = str(os.getenv('DATA_SET', 'C101_0.5.dat'))
+data_set = str(os.getenv('DATA_SET'))
 SEGMENT = 3
-solution_pack_len = int(os.getenv('SOLUTION_PACK_LEN', '0'))
-similarity = float(os.getenv('SIMILARITY', '0.6'))
-TIME_LIMIT = 20000
+solution_pack_len = int(os.getenv('SOLUTION_PACK_LEN'))
+similarity = float(os.getenv('SIMILARITY'))
+
 def roulette_wheel_selection(population, fitness_scores):
     total_fitness = sum(fitness_scores)
     probabilities = [score / total_fitness for score in fitness_scores]
