@@ -81,9 +81,9 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
     current_sol = init_solution
     
     while T < SEGMENT:
-        end_time = time.time()
-        if end_time - start_time > TIME_LIMIT:
-            break
+        # end_time = time.time()
+        # if end_time - start_time > TIME_LIMIT:
+        #     break
         tabu_tenure = tabu_tenure1 = tabu_tenure3 = tabu_tenure2 = random.uniform(2*math.log(Data.number_of_cities), Data.number_of_cities)
         Tabu_Structure = [(tabu_tenure +1) * (-1)] * Data.number_of_cities
         Tabu_Structure1 = [(tabu_tenure +1) * (-1)] * Data.number_of_cities
@@ -346,7 +346,7 @@ def Tabu_search_for_CVRP(CC):
     Data1 = []
     list_init = []
     
-    start_time = time.time()
+    # start_time = time.time()
     current_sol5 = Function.initial_solution3()
     list_init.append(current_sol5)
 
@@ -451,7 +451,7 @@ for txt_file in txt_files:
         for i in range(ITE):
             BEST = []
             print("------------------------",i,"------------------------")
-            starttime = time.time()
+            start_time = time.time()
             best_fitness, best_sol = Tabu_search_for_CVRP(1)
             print("---------- RESULT ----------")
             print(best_sol)
@@ -459,8 +459,8 @@ for txt_file in txt_files:
             avg += best_fitness/ITE
             result.append(best_fitness)
             # print(Function.Check_if_feasible(best_sol))
-            endtime = time.time()
-            run = endtime - starttime
+            end_time = time.time()
+            run = end_time - start_time
             run_time.append(run)
             avg_run_time += run/ITE
             sheet.cell(row=row, column=column, value=best_fitness)
