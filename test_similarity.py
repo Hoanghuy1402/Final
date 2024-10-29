@@ -26,7 +26,7 @@ global SET_LAST_10
 global BEST
 
 # Set up chỉ số -------------------------------------------------------------------
-ITE = 10
+ITE = 1
 epsilon = (-1) * 0.00001
 # 15:   120,    20:    150
 # BREAKLOOP = Data.number_of_cities * 8
@@ -36,12 +36,9 @@ BEST = []
 number_of_cities = int(os.getenv('NUMBER_OF_CITIES', 100)) 
 delta = 0.6
 alpha = [0.5, 0.3, 0.1]
-<<<<<<< Updated upstream
 data_set = str(os.getenv('DATA_SET', 'C101_0.5.dat'))
-=======
 data_set = str(os.getenv('DATA_SET', 'C101_2.dat'))
->>>>>>> Stashed changes
-SEGMENT = 3
+SEGMENT = 5
 solution_pack_len = int(os.getenv('SOLUTION_PACK_LEN', 0))
 similarity = float(os.getenv('SIMILARITY', 0.5))
 
