@@ -26,7 +26,7 @@ global SET_LAST_10
 global BEST
 
 # Set up chỉ số -------------------------------------------------------------------
-ITE = 10
+ITE = 1
 epsilon = (-1) * 0.00001
 # 15:   120,    20:    150
 # BREAKLOOP = Data.number_of_cities * 8
@@ -37,7 +37,7 @@ BEST = []
 number_of_cities = int(os.getenv('NUMBER_OF_CITIES', '50')) 
 delta = float(os.getenv('DELTA', '0.3'))
 alpha = json.loads(os.getenv('ALPHA', '[0.5, 0.3, 0.1]'))
-theta = int(os.getenv('theta', '0.5'))
+theta = float(os.getenv('theta', '0.5'))
 
 solution_pack_len = 0
 def roulette_wheel_selection(population, fitness_scores):
@@ -73,7 +73,7 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
     LOOP = min(int(Data.number_of_cities*math.log10(Data.number_of_cities)), 100)
 
     # BREAKLOOP = Data.number_of_cities
-    SEGMENT = 100
+    SEGMENT = 10
     END_SEGMENT =  int(Data.number_of_cities/math.log10(Data.number_of_cities)) * theta
     
     T = 0
@@ -333,11 +333,10 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
         print(T, best_sol, "\n", best_fitness)
         print(used, score, sum(used))
 
-        T += 1
-        # if best_fitness - prev_f < epsilon:
-        #     T = 0
-        # else: 
-        #     T += 1
+        if best_fitness - prev_f < epsilon:
+            T = 0
+        else: 
+            T += 1
         
     return best_sol, best_fitness, Result_print, solution_pack, Data1
     
@@ -473,7 +472,5 @@ for txt_file in txt_files:
             workbook.save(f"Random_{number_of_cities}_{delta}_{alpha}_{theta}_CL2.xlsx")
         # Tăng dòng cho lần chạy tiếp theo
         row += 1
-        log_file.close()
 
 workbook.close()
-
