@@ -34,7 +34,7 @@ jobs:
           NUMBER_OF_CITIES: ${{ matrix.number_of_cities }}
           DELTA: ${{ matrix.delta }}
           ALPHA: ${{ matrix.alpha }}
-          END_SEGMENT: ${{ matrix.end_segment }}
+          THETA: ${{ matrix.theta }}
           DATA_SET: ${{ matrix.data_set }}
       - name: Upload result Excel file as artifact
         uses: actions/upload-artifact@v4
