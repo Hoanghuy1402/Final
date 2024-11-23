@@ -50,12 +50,6 @@ def roulette_wheel_selection(population, fitness_scores):
 def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, start_time):
     solution_pack_len = 0
     solution_pack = []
-
-    current_fitness, current_truck_time, current_sum_fitness = Function.fitness(init_solution)
-    best_sol = init_solution
-    best_fitness = current_fitness
-    sol_chosen_to_break = init_solution
-    fit_of_sol_chosen_to_break = current_fitness
     
     lennn = [0] * 6
     lenght_i = [0] * 6
