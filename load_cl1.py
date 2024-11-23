@@ -73,7 +73,7 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
     Data1 = [['act', 'fitness', 'change1', 'change2', 'solution', 'tabu structue', 'tabu structure1']]
 
     # BREAKLOOP = Data.number_of_cities
-    with open('Random_'+str(data_set)+'_'+str(number_of_cities)+'_'+str(delta)+'_'+str(alpha)+'_'+str(END_SEGMENT)+'_CL1', 'r') as file:
+    with open('Random_'+str(data_set)+'_'+str(number_of_cities)+'_'+str(delta)+'_'+str(alpha)+'_'+str(END_SEGMENT)+'_CL1.txt', 'r') as file:
         T = int(file.readlines()[-1].split(',')[1].split('=')[1])
         weight = json.loads(file.readlines()[-1].split(',')[2].split('=')[1])
         current_sol = json.loads(file.readlines()[-1].split(',')[0].split('=')[1])
