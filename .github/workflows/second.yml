@@ -29,7 +29,7 @@ jobs:
         run: pip install -r requirements.txt
         
       - name: Run main.py ITE-9
-        run: python load_cl1.py
+        run: python 1_0.3.py
         env:
           NUMBER_OF_CITIES: ${{ matrix.number_of_cities }}
           DELTA: ${{ matrix.delta }}
@@ -61,7 +61,7 @@ jobs:
         run: pip install -r requirements.txt
         
       - name: Run main.py ITE-9
-        run: python 1_0.3.py
+        run: python load_cl1.py
         env:
           NUMBER_OF_CITIES: ${{ matrix.number_of_cities }}
           DELTA: ${{ matrix.delta }}
