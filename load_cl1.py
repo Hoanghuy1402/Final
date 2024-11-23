@@ -40,7 +40,7 @@ END_SEGMENT = int(os.getenv('END_SEGMENT', '100'))
 data_set = os.getenv('DATA_SET', 'C101_0.5.dat')
 SEGMENT = 10
 solution_pack_len = 0
-TIME_LIMIT = 1
+TIME_LIMIT = 20
 def roulette_wheel_selection(population, fitness_scores):
     total_fitness = sum(fitness_scores)
     probabilities = [score / total_fitness for score in fitness_scores]
@@ -71,17 +71,15 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
     use_optimize_truck_route = False
     
     Data1 = [['act', 'fitness', 'change1', 'change2', 'solution', 'tabu structue', 'tabu structure1']]
-    LOOP = min(int(Data.number_of_cities*math.log10(Data.number_of_cities)), 100)
 
     # BREAKLOOP = Data.number_of_cities
-
-    
-    T = 0
+    with open('output.txt', 'r') as file:
+        T = int(file.readlines()[-1].split(',')[1].split('=')[1])
+        weight = json.loads(file.readlines()[-1].split(',')[2].split('=')[1])
+        current_sol = json.loads(file.readlines()[-1].split(',')[0].split('=')[1])
     nei_set = [0, 1, 2, 3]
-    weight = [1/len(nei_set)]*len(nei_set)
-    current_sol = init_solution
     
-    with open('Random_'+str(data_set)+'_'+str(number_of_cities)+'_'+str(delta)+'_'+str(alpha)+'_'+str(END_SEGMENT)+'_CL1', 'a') as file:  # Open a file in append mode
+    with open('output.txt', 'a') as file:  # Open a file in append mode
         while T < SEGMENT:
             end_time = time.time()
             if end_time - start_time > TIME_LIMIT:
@@ -402,7 +400,6 @@ def Tabu_search_for_CVRP(CC):
                 best_sol = best_sol1
                 best_fitness = best_fitness1
         
-        end_time = time.time()
         # if end_time - start_time > 3000:
         #     break
 
@@ -462,7 +459,7 @@ for txt_file in txt_files:
             result.append(best_fitness)
             # print(Function.Check_if_feasible(best_sol))
             end_time = time.time()
-            run = end_time - start_time
+            run = end_time - start_time + TIME_LIMIT
             run_time.append(run)
             avg_run_time += run/ITE
             sheet.cell(row=row, column=column, value=best_fitness)

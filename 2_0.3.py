@@ -35,9 +35,9 @@ SET_LAST_10 = []
 BEST = []
 # 
 number_of_cities = int(os.getenv('NUMBER_OF_CITIES', '50')) 
-delta = float(os.getenv('DELTA', '0.3'))
+delta = float(os.getenv('DELTA', '0.6'))
 alpha = json.loads(os.getenv('ALPHA', '[0.5, 0.3, 0.1]'))
-theta = float(os.getenv('THETA', '0.5'))
+theta = float(os.getenv('THETA', '1'))
 data_set = str(os.getenv('DATA_SET', 'C101_2.dat'))
 solution_pack_len = 0
 def roulette_wheel_selection(population, fitness_scores):
@@ -70,7 +70,7 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
     use_optimize_truck_route = False
     
     Data1 = [['act', 'fitness', 'change1', 'change2', 'solution', 'tabu structue', 'tabu structure1']]
-    LOOP = min(int(Data.number_of_cities*math.log10(Data.number_of_cities)), 100)
+    # LOOP = min(int(Data.number_of_cities*math.log10(Data.number_of_cities)), 100)
 
     # BREAKLOOP = Data.number_of_cities
     SEGMENT = 10
