@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-results-${{ matrix.number_of_cities }}-${{ matrix.delta }}-${{ matrix.alpha }}-${{ matrix.end_segment }}-${{ matrix.data_set }}  # Thêm iteration vào tên file
-          path: Random_${{ matrix.data_set }}_${{ matrix.number_of_cities }}_${{ matrix.delta }}_${{ matrix.alpha }}_${{ matrix.end_segment }}_CL1.txt
+          path: Random_*_CL1.txt
   
   continue:
     name: Run test with multiple configurations
@@ -61,7 +61,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          path: Random_${{ matrix.data_set }}_${{ matrix.number_of_cities }}_${{ matrix.delta }}_${{ matrix.alpha }}_${{ matrix.end_segment }}_CL1.txt
+          path: Random_*_CL1.txt
           merge-multiple: true
       
       - name: Setup Python
