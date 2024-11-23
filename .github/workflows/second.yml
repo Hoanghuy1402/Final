@@ -41,28 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-results-${{ matrix.number_of_cities }}-${{ matrix.delta }}-${{ matrix.alpha }}-${{ matrix.end_segment }}-${{ matrix.data_set }}  # Thêm iteration vào tên file
-          path: Random_*_CL1.txt
-
-  txt_summary:
-    name: Summary results
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: .
-          merge-multiple: true
-      
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: excel-results-summary
-          path: Random_*_CL1.txt
+          path: Random_*_CL1.json
 
   continue:
     name: Run test with multiple configurations

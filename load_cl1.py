@@ -68,13 +68,18 @@ def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, st
 
     # BREAKLOOP = Data.number_of_cities
     with open('Random_'+str(data_set)+'_'+str(number_of_cities)+'_'+str(delta)+'_'+str(alpha)+'_'+str(END_SEGMENT)+'_CL1.txt', 'r') as file:
-        T = int(file.readlines()[-1].split(',')[1].split('=')[1])
-        weight = json.loads(file.readlines()[-1].split(',')[2].split('=')[1])
-        best_sol = json.loads(file.readlines()[-1].split(',')[0].split('=')[1])
-        best_fitness = float(file.readlines()[-1].split(',')[1].split('=')[1])
+        lines = file.readlines()
+        last_line = lines[-1]
+        data = json.loads(last_line)  # Parse the last line as JSON
+
+        best_sol = data["best_sol"]
+        best_fitness = float(data["best_fitness"])
+        T = int(data["T"])
+        weight = data["weight"]
 
     nei_set = [0, 1, 2, 3]
-    
+    sol_chosen_to_break = best_sol
+    fit_of_sol_chosen_to_break = best_fitness
                 
     while T < SEGMENT:
         end_time = time.time()
