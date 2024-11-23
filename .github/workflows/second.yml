@@ -29,7 +29,7 @@ jobs:
         run: pip install -r requirements.txt
         
       - name: Run main.py ITE-9
-        run: python 1_0.3.py
+        run: python load_cl1.py
         env:
           NUMBER_OF_CITIES: ${{ matrix.number_of_cities }}
           DELTA: ${{ matrix.delta }}
@@ -39,6 +39,7 @@ jobs:
   
   continue:
     name: Run test with multiple configurations
+    needs: test
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -75,7 +76,7 @@ jobs:
           
   summary:
     name: Summary results
-    needs: test
+    needs: continue
     runs-on: ubuntu-latest
 
     steps:
