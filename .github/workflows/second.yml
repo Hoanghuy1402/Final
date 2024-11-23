@@ -66,6 +66,9 @@ jobs:
           path: .
           merge-multiple: true
       
+      - name: Check if the file exists
+        run: ls
+      
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
