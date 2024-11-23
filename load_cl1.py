@@ -47,7 +47,7 @@ def roulette_wheel_selection(population, fitness_scores):
     selected_index = np.random.choice(len(population), p=probabilities)
     return population[selected_index]
 
-def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_consider_elite_set, start_time):
+def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, start_time):
     solution_pack_len = 0
     solution_pack = []
 
@@ -76,7 +76,9 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
     with open('Random_'+str(data_set)+'_'+str(number_of_cities)+'_'+str(delta)+'_'+str(alpha)+'_'+str(END_SEGMENT)+'_CL1.txt', 'r') as file:
         T = int(file.readlines()[-1].split(',')[1].split('=')[1])
         weight = json.loads(file.readlines()[-1].split(',')[2].split('=')[1])
-        current_sol = json.loads(file.readlines()[-1].split(',')[0].split('=')[1])
+        best_sol = json.loads(file.readlines()[-1].split(',')[0].split('=')[1])
+        best_fitness = float(file.readlines()[-1].split(',')[1].split('=')[1])
+
     nei_set = [0, 1, 2, 3]
     
                 
@@ -346,34 +348,8 @@ def Tabu_search_for_CVRP(CC):
     list_init = []
     
     start_time = time.time()
-    current_sol5 = Function.initial_solution7()
-    list_init.append(current_sol5)
 
-    
-    
-    list_fitness_init = []
-    fitness5 = Function.fitness(current_sol5)
-
-    list_fitness_init.append(fitness5)
-
-    
-    current_fitness = list_fitness_init[0][0]
-    current_sol = list_init[0]
-    
-    for i in range(1, len(list_fitness_init)):
-        if current_fitness > list_fitness_init[i][0]:
-            current_sol = list_init[i]
-            current_fitness = list_fitness_init[i][0]
-
-    # Initial solution thay ở đây ------------->
-    # current_sol = check     # Để dòng này làm comment để tìm initial solution theo tham lam
-    # <------------- Initial solution thay ở đây 
-    
-    
-    # print(best_sol) 
-    # print(best_fitness)
-    # print(Function.Check_if_feasible(best_sol))
-    best_sol, best_fitness, result_print, solution_pack, Data1 = Tabu_search(init_solution=current_sol, tabu_tenure=Data.number_of_cities-1, CC=CC, first_time=True, Data1=Data1, index_consider_elite_set=0, start_time=start_time)
+    best_sol, best_fitness, result_print, solution_pack, Data1 = Tabu_search(tabu_tenure=Data.number_of_cities-1, CC=CC, first_time=True, Data1=Data1, index_consider_elite_set=0, start_time=start_time)
     for pi in range(solution_pack_len):
         # print("+++++++++++++++++++++++++",len(solution_pack),"+++++++++++++++++++++++++",)
         # for iiii in range(len(solution_pack)):
