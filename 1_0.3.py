@@ -81,7 +81,7 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
     weight = [1/len(nei_set)]*len(nei_set)
     current_sol = init_solution
     
-    with open('Random_'+str(data_set)+'_'+str(number_of_cities)+'_'+str(delta)+'_'+str(alpha)+'_'+str(END_SEGMENT)+'_CL1.txt', 'w') as file:  # Open a file in write mode
+    with open('Random_'+str(data_set)+'_'+str(number_of_cities)+'_'+str(delta)+'_'+str(alpha)+'_'+str(END_SEGMENT)+'_CL1.json', 'w') as file:  # Open a file in write mode
         while T < SEGMENT:
             end_time = time.time()
             if end_time - start_time > TIME_LIMIT:
