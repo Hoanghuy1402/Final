@@ -34,11 +34,11 @@ LOOP_IMPROVED = 0
 SET_LAST_10 = [] 
 BEST = []
 # 
-number_of_cities = int(os.getenv('NUMBER_OF_CITIES', '50')) 
-delta = float(os.getenv('DELTA', '0.6'))
-alpha = json.loads(os.getenv('ALPHA', '[0.5, 0.3, 0.1]'))
-theta = float(os.getenv('THETA', '1'))
-data_set = str(os.getenv('DATA_SET', 'C101_2.dat'))
+number_of_cities = int(os.getenv('NUMBER_OF_CITIES', default='50')) 
+delta = float(os.getenv('DELTA', default='0.6'))
+alpha = json.loads(os.getenv('ALPHA', default='[0.5, 0.3, 0.1]'))
+theta = float(os.getenv('THETA', default='1'))
+data_set = str(os.getenv('DATA_SET', default='C101_2.dat'))
 solution_pack_len = 0
 TIME_LIMIT = 10
 def roulette_wheel_selection(population, fitness_scores):
