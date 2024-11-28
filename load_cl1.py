@@ -40,7 +40,7 @@ END_SEGMENT = int(os.getenv('END_SEGMENT', default='100'))
 data_set = os.getenv('DATA_SET', default='C201_0.5.dat')
 SEGMENT = 10
 solution_pack_len = 0
-TIME_LIMIT = 20
+TIME_LIMIT = 200
 def roulette_wheel_selection(population, fitness_scores):
     total_fitness = sum(fitness_scores)
     probabilities = [score / total_fitness for score in fitness_scores]
