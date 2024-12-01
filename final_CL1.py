@@ -409,14 +409,13 @@ for txt_file in txt_files:
             row = 1
             column = 1
             sheet.cell(row=row, column=column, value=os.path.basename(txt_file))
-            row += 1
             print("---------- RESULT ----------")
             print(best_sol)
             print(best_fitness)
             avg += best_fitness/ITE
             result.append(best_fitness)
             # print(Function.Check_if_feasible(best_sol))
-            
+            column += 1
             run = end_time - start_time + data_to_write["runtime"]
             run_time.append(run)
             avg_run_time += run/ITE
