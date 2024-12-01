@@ -79,8 +79,7 @@ def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, st
 
         best_sol = data["best_sol"]
         best_fitness = float(data["best_fitness"])
-        T = int(data["T"])
-        weight = data["weight"]
+        
         done = data["Done"]
     
     if done:
@@ -91,7 +90,8 @@ def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, st
             "runtime": data["runtime"]
         }
         return best_sol, best_fitness, Result_print, solution_pack, data_to_write
-
+    T = int(data["T"])
+    weight = data["weight"]
     nei_set = [0, 1, 2, 3]
     sol_chosen_to_break = best_sol
     fit_of_sol_chosen_to_break = best_fitness
