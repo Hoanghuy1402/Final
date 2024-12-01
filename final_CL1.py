@@ -354,14 +354,15 @@ def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, st
             T = 0
         else: 
             T += 1
-        end = time.time()
-        if data_to_write == {}:
-            data_to_write = {
-                "Done": True,
-                "best_sol": best_sol,
-                "best_fitness": best_fitness,
-                "runtime": end - start_time
-            }
+            
+    end = time.time()
+    if data_to_write == {}:
+        data_to_write = {
+            "Done": True,
+            "best_sol": best_sol,
+            "best_fitness": best_fitness,
+            "runtime": end - start_time
+        }
             
     return best_sol, best_fitness, Result_print, solution_pack, data_to_write
     
