@@ -79,7 +79,7 @@ def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, st
 
         best_sol = data["best_sol"]
         best_fitness = float(data["best_fitness"])
-        
+        runtime = data["runtime"]
         done = data["Done"]
     
     if done:
@@ -87,9 +87,8 @@ def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, st
             "Done": True,
             "best_sol": best_sol,
             "best_fitness": best_fitness,
-            "runtime": data["runtime"]
         }
-        return best_sol, best_fitness, Result_print, solution_pack, data_to_write
+        return best_sol, best_fitness, Result_print, solution_pack, data_to_write, runtime
     T = int(data["T"])
     weight = data["weight"]
     nei_set = [0, 1, 2, 3]
@@ -104,7 +103,6 @@ def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, st
                 "best_fitness": best_fitness,
                 "T": T,
                 "weight": weight,
-                "runtime": end_time - start_time + data["runtime"],
                 "Done": False
             }
             break
@@ -354,17 +352,15 @@ def Tabu_search(tabu_tenure, CC, first_time, Data1, index_consider_elite_set, st
             T = 0
         else: 
             T += 1
-            
-    end = time.time()
+
     if data_to_write == {}:
         data_to_write = {
             "Done": True,
             "best_sol": best_sol,
-            "best_fitness": best_fitness,
-            "runtime": end - start_time
+            "best_fitness": best_fitness
         }
             
-    return best_sol, best_fitness, Result_print, solution_pack, data_to_write
+    return best_sol, best_fitness, Result_print, solution_pack, data_to_write, runtime
     
 def Tabu_search_for_CVRP(CC):
     Data1 = []
@@ -372,9 +368,9 @@ def Tabu_search_for_CVRP(CC):
     
     start_time = time.time()
 
-    best_sol, best_fitness, result_print, solution_pack, data_to_write = Tabu_search(tabu_tenure=Data.number_of_cities-1, CC=CC, first_time=True, Data1=Data1, index_consider_elite_set=0, start_time=start_time)
+    best_sol, best_fitness, result_print, solution_pack, data_to_write, runtime = Tabu_search(tabu_tenure=Data.number_of_cities-1, CC=CC, first_time=True, Data1=Data1, index_consider_elite_set=0, start_time=start_time)
     
-    return best_fitness, best_sol, data_to_write
+    return best_fitness, best_sol, data_to_write, runtime
 
 # Thư mục chứa các file .txt
 folder_path = "test_data/data_demand_random/"+str(number_of_cities)
@@ -403,7 +399,7 @@ for txt_file in txt_files:
             BEST = []
             print("------------------------",i,"------------------------")
             start_time = time.time()
-            best_fitness, best_sol, data_to_write = Tabu_search_for_CVRP(1)
+            best_fitness, best_sol, data_to_write, runtime = Tabu_search_for_CVRP(1)
             end_time = time.time()
             workbook = openpyxl.Workbook()
             sheet = workbook.active
@@ -417,7 +413,7 @@ for txt_file in txt_files:
             result.append(best_fitness)
             # print(Function.Check_if_feasible(best_sol))
             column += 1
-            run = end_time - start_time + data_to_write["runtime"]
+            run = end_time - start_time + runtime
             run_time.append(run)
             avg_run_time += run/ITE
             sheet.cell(row=row, column=column, value=best_fitness)
