@@ -26,7 +26,7 @@ global SET_LAST_10
 global BEST
 
 # Set up chỉ số -------------------------------------------------------------------
-ITE = 10
+ITE = 5
 epsilon = (-1) * 0.00001
 # 15:   120,    20:    150
 # BREAKLOOP = Data.number_of_cities * 8
@@ -343,7 +343,7 @@ def Tabu_search(init_solution, tabu_tenure, CC, first_time, Data1, index_conside
 def Tabu_search_for_CVRP(CC):
     Data1 = []
     list_init = []
-    
+    solution_pack = []
     # start_time = time.time()
     current_sol5 = Function.initial_solution7()
     list_init.append(current_sol5)
